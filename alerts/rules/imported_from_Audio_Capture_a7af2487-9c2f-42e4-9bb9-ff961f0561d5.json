@@ -1,0 +1,62 @@
+{
+  "rule_name": "imported_from_Audio_Capture_a7af2487-9c2f-42e4-9bb9-ff961f0561d5",
+  "rule_author": "siembol",
+  "rule_version": 1,
+  "rule_description": "Detects attempts to record audio with arecord utility",
+  "source_type": "qwert",
+  "matchers": [
+    {
+      "is_enabled": true,
+      "matcher_type": "COMPOSITE_AND",
+      "is_negated": false,
+      "matchers": [
+        {
+          "is_enabled": true,
+          "matcher_type": "REGEX_MATCH",
+          "is_negated": false,
+          "field": "type",
+          "data": "\\QEXECVE\\E"
+        },
+        {
+          "is_enabled": true,
+          "matcher_type": "REGEX_MATCH",
+          "is_negated": false,
+          "field": "a0",
+          "data": "\\Qarecord\\E"
+        },
+        {
+          "is_enabled": true,
+          "matcher_type": "REGEX_MATCH",
+          "is_negated": false,
+          "field": "a1",
+          "data": "\\Q-vv\\E"
+        },
+        {
+          "is_enabled": true,
+          "matcher_type": "REGEX_MATCH",
+          "is_negated": false,
+          "field": "a2",
+          "data": "\\Q-fdat\\E"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "tag_name": "sigma_id",
+      "tag_value": "a7af2487-9c2f-42e4-9bb9-ff961f0561d5"
+    },
+    {
+      "tag_name": "sigma_tags",
+      "tag_value": "[attack.collection, attack.t1123]"
+    },
+    {
+      "tag_name": "sigma_fp",
+      "tag_value": "[Unknown]"
+    }
+  ],
+  "rule_protection": {
+    "max_per_hour": 30,
+    "max_per_day": 100
+  }
+}
