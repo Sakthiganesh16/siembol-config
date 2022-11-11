@@ -1,0 +1,34 @@
+{
+  "rule_name": "imported_from_Code_Injection_by_ld_so_Preload_7e3c4651-c347-40c4-b1d4-d48590fdf684",
+  "rule_author": "siembol",
+  "rule_version": 1,
+  "rule_description": "Detects the ld.so preload persistence file. See `man ld.so` for more information.",
+  "source_type": "linux.syslogs",
+  "matchers": [
+    {
+      "is_enabled": true,
+      "matcher_type": "REGEX_MATCH",
+      "is_negated": false,
+      "field": "original_string",
+      "data": "\\Q/etc/ld.so.preload\\E"
+    }
+  ],
+  "tags": [
+    {
+      "tag_name": "sigma_id",
+      "tag_value": "7e3c4651-c347-40c4-b1d4-d48590fdf684"
+    },
+    {
+      "tag_name": "sigma_tags",
+      "tag_value": "[attack.persistence, attack.privilege_escalation, attack.t1574.006]"
+    },
+    {
+      "tag_name": "sigma_fp",
+      "tag_value": "[Rare temporary workaround for library misconfiguration]"
+    }
+  ],
+  "rule_protection": {
+    "max_per_hour": 30,
+    "max_per_day": 100
+  }
+}
