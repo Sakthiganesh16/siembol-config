@@ -9,13 +9,13 @@
     "max_per_hour": 30,
     "max_per_day": 100
   },
-  "rules_version": 5,
+  "rules_version": 6,
   "rules": [
     {
       "rule_name": "win_mimikatz",
       "rule_author": "siembol",
-      "rule_version": 1,
-      "rule_description": "Detect LSASS handling by Mimikatz",
+      "rule_version": 2,
+      "rule_description": "Detect LSASS handling by Mimikatz.",
       "source_type": "win_eventlogs",
       "matchers": [
         {
@@ -60,6 +60,156 @@
       "rule_protection": {
         "max_per_hour": 100,
         "max_per_day": 3000
+      }
+    },
+    {
+      "rule_name": "imported_from_Code_Injection_by_ld_so_Preload_7e3c4651-c347-40c4-b1d4-d48590fdf684",
+      "rule_author": "siembol",
+      "rule_version": 1,
+      "rule_description": "Detects the ld.so preload persistence file. See `man ld.so` for more information.",
+      "source_type": "linux.syslogs",
+      "matchers": [
+        {
+          "is_enabled": true,
+          "matcher_type": "REGEX_MATCH",
+          "is_negated": false,
+          "field": "original_string",
+          "data": "\\Q/etc/ld.so.preload\\E"
+        }
+      ],
+      "tags": [
+        {
+          "tag_name": "sigma_id",
+          "tag_value": "7e3c4651-c347-40c4-b1d4-d48590fdf684"
+        },
+        {
+          "tag_name": "sigma_tags",
+          "tag_value": "[attack.persistence, attack.privilege_escalation, attack.t1574.006]"
+        },
+        {
+          "tag_name": "sigma_fp",
+          "tag_value": "[Rare temporary workaround for library misconfiguration]"
+        }
+      ],
+      "rule_protection": {
+        "max_per_hour": 30,
+        "max_per_day": 100
+      }
+    },
+    {
+      "rule_name": "aws_failed_authentication",
+      "rule_author": "siembol",
+      "rule_version": 1,
+      "rule_description": "AWS failed authentication",
+      "source_type": "aws_cloudtrail",
+      "matchers": [
+        {
+          "matcher_type": "REGEX_MATCH",
+          "is_negated": false,
+          "field": "eventName",
+          "data": "(?i)ConsoleLogin$"
+        },
+        {
+          "matcher_type": "IS_IN_SET",
+          "is_negated": false,
+          "field": "errorMessage",
+          "case_insensitive": true,
+          "data": "Failed authentication"
+        }
+      ],
+      "tags": [
+        {
+          "tag_name": "correlation_key",
+          "tag_value": "${userIdentity_principalId}"
+        }
+      ]
+    },
+    {
+      "rule_name": "imported_from_Audio_Capture_a7af2487-9c2f-42e4-9bb9-ff961f0561d5",
+      "rule_author": "siembol",
+      "rule_version": 1,
+      "rule_description": "Detects attempts to record audio with arecord utility",
+      "source_type": "qwert",
+      "matchers": [
+        {
+          "is_enabled": true,
+          "matcher_type": "COMPOSITE_AND",
+          "is_negated": false,
+          "matchers": [
+            {
+              "is_enabled": true,
+              "matcher_type": "REGEX_MATCH",
+              "is_negated": false,
+              "field": "type",
+              "data": "\\QEXECVE\\E"
+            },
+            {
+              "is_enabled": true,
+              "matcher_type": "REGEX_MATCH",
+              "is_negated": false,
+              "field": "a0",
+              "data": "\\Qarecord\\E"
+            },
+            {
+              "is_enabled": true,
+              "matcher_type": "REGEX_MATCH",
+              "is_negated": false,
+              "field": "a1",
+              "data": "\\Q-vv\\E"
+            },
+            {
+              "is_enabled": true,
+              "matcher_type": "REGEX_MATCH",
+              "is_negated": false,
+              "field": "a2",
+              "data": "\\Q-fdat\\E"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        {
+          "tag_name": "sigma_id",
+          "tag_value": "a7af2487-9c2f-42e4-9bb9-ff961f0561d5"
+        },
+        {
+          "tag_name": "sigma_tags",
+          "tag_value": "[attack.collection, attack.t1123]"
+        },
+        {
+          "tag_name": "sigma_fp",
+          "tag_value": "[Unknown]"
+        }
+      ],
+      "rule_protection": {
+        "max_per_hour": 30,
+        "max_per_day": 100
+      }
+    },
+    {
+      "rule_name": "win_eventlogs_failed_logon",
+      "rule_author": "siembol",
+      "rule_version": 1,
+      "rule_description": "Alert for 4625 failed logon - for correlation on user",
+      "source_type": "win_eventlogs",
+      "matchers": [
+        {
+          "matcher_type": "IS_IN_SET",
+          "is_negated": false,
+          "field": "EventID",
+          "case_insensitive": false,
+          "data": "4625"
+        }
+      ],
+      "tags": [
+        {
+          "tag_name": "correlation_key",
+          "tag_value": "${SubjectUserName}"
+        }
+      ],
+      "rule_protection": {
+        "max_per_hour": 30,
+        "max_per_day": 100
       }
     }
   ]
