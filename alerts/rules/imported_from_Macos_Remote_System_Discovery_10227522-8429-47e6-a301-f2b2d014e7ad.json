@@ -1,0 +1,82 @@
+{
+  "rule_name" : "imported_from_Macos_Remote_System_Discovery_10227522-8429-47e6-a301-f2b2d014e7ad",
+  "rule_author" : "siembol",
+  "rule_version": 1,
+  "rule_description" : "Detects the enumeration of other remote systems.",
+  "source_type" : "macos",
+  "matchers" : [ {
+    "matchers" : [ {
+      "matchers" : [ {
+        "field" : "Image",
+        "data" : ".*\\Q/arp\\E$",
+        "is_enabled" : true,
+        "matcher_type" : "REGEX_MATCH",
+        "is_negated" : false,
+        "case_insensitive" : false,
+        "starts_with" : false,
+        "ends_with" : false
+      }, {
+        "field" : "CommandLine",
+        "data" : ".*\\Q-a\\E.*",
+        "is_enabled" : true,
+        "matcher_type" : "REGEX_MATCH",
+        "is_negated" : false,
+        "case_insensitive" : false,
+        "starts_with" : false,
+        "ends_with" : false
+      } ],
+      "is_enabled" : true,
+      "matcher_type" : "COMPOSITE_AND",
+      "is_negated" : false,
+      "case_insensitive" : false,
+      "starts_with" : false,
+      "ends_with" : false
+    }, {
+      "matchers" : [ {
+        "field" : "Image",
+        "data" : ".*\\Q/ping\\E$",
+        "is_enabled" : true,
+        "matcher_type" : "REGEX_MATCH",
+        "is_negated" : false,
+        "case_insensitive" : false,
+        "starts_with" : false,
+        "ends_with" : false
+      }, {
+        "field" : "CommandLine",
+        "data" : ".*\\Q 10.\\E.*|.*\\Q 192.168.\\E.*|.*\\Q 172.16.\\E.*|.*\\Q 172.17.\\E.*|.*\\Q 172.18.\\E.*|.*\\Q 172.19.\\E.*|.*\\Q 172.20.\\E.*|.*\\Q 172.21.\\E.*|.*\\Q 172.22.\\E.*|.*\\Q 172.23.\\E.*|.*\\Q 172.24.\\E.*|.*\\Q 172.25.\\E.*|.*\\Q 172.26.\\E.*|.*\\Q 172.27.\\E.*|.*\\Q 172.28.\\E.*|.*\\Q 172.29.\\E.*|.*\\Q 172.30.\\E.*|.*\\Q 172.31.\\E.*|.*\\Q 127.\\E.*|.*\\Q 169.254.\\E.*",
+        "is_enabled" : true,
+        "matcher_type" : "REGEX_MATCH",
+        "is_negated" : false,
+        "case_insensitive" : false,
+        "starts_with" : false,
+        "ends_with" : false
+      } ],
+      "is_enabled" : true,
+      "matcher_type" : "COMPOSITE_AND",
+      "is_negated" : false,
+      "case_insensitive" : false,
+      "starts_with" : false,
+      "ends_with" : false
+    } ],
+    "is_enabled" : true,
+    "matcher_type" : "COMPOSITE_OR",
+    "is_negated" : false,
+    "case_insensitive" : false,
+    "starts_with" : false,
+    "ends_with" : false
+  } ],
+  "tags" : [ {
+    "tag_name" : "sigma_id",
+    "tag_value" : "10227522-8429-47e6-a301-f2b2d014e7ad"
+  }, {
+    "tag_name" : "sigma_tags",
+    "tag_value" : "[attack.discovery, attack.t1018]"
+  }, {
+    "tag_name" : "sigma_fp",
+    "tag_value" : "[Legitimate administration activities]"
+  } ],
+  "rule_protection" : {
+    "max_per_hour" : 30,
+    "max_per_day" : 100
+  }
+}
