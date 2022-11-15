@@ -1,0 +1,48 @@
+{
+  "rule_name" : "imported_from_Scheduled_Cron_Task_Job_7c3b43d8-d794-47d2-800a-d277715aa460",
+  "rule_author" : "siembol",
+  "rule_version": 1,
+  "rule_description" : "Detects abuse of the cron utility to perform task scheduling for initial or recurring execution of malicious code. Detection will focus on crontab jobs uploaded from the tmp folder.",
+  "source_type" : "macos",
+  "matchers" : [ {
+    "matchers" : [ {
+      "field" : "Image",
+      "data" : ".*\\Q/crontab\\E$",
+      "is_enabled" : true,
+      "matcher_type" : "REGEX_MATCH",
+      "is_negated" : false,
+      "case_insensitive" : false,
+      "starts_with" : false,
+      "ends_with" : false
+    }, {
+      "field" : "CommandLine",
+      "data" : ".*\\Q/tmp/\\E.*",
+      "is_enabled" : true,
+      "matcher_type" : "REGEX_MATCH",
+      "is_negated" : false,
+      "case_insensitive" : false,
+      "starts_with" : false,
+      "ends_with" : false
+    } ],
+    "is_enabled" : true,
+    "matcher_type" : "COMPOSITE_AND",
+    "is_negated" : false,
+    "case_insensitive" : false,
+    "starts_with" : false,
+    "ends_with" : false
+  } ],
+  "tags" : [ {
+    "tag_name" : "sigma_id",
+    "tag_value" : "7c3b43d8-d794-47d2-800a-d277715aa460"
+  }, {
+    "tag_name" : "sigma_tags",
+    "tag_value" : "[attack.execution, attack.persistence, attack.privilege_escalation, attack.t1053.003]"
+  }, {
+    "tag_name" : "sigma_fp",
+    "tag_value" : "[Legitimate administration activities]"
+  } ],
+  "rule_protection" : {
+    "max_per_hour" : 30,
+    "max_per_day" : 100
+  }
+}
