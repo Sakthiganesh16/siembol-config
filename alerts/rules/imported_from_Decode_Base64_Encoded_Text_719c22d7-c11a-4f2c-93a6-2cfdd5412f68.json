@@ -1,0 +1,48 @@
+{
+  "rule_name" : "imported_from_Decode_Base64_Encoded_Text_719c22d7-c11a-4f2c-93a6-2cfdd5412f68",
+  "rule_author" : "siembol",
+  "rule_version": 1,
+  "rule_description" : "Detects usage of base64 utility to decode arbitrary base64-encoded text",
+  "source_type" : "macos",
+  "matchers" : [ {
+    "matchers" : [ {
+      "field" : "Image",
+      "data" : "\\Q/usr/bin/base64\\E",
+      "is_enabled" : true,
+      "matcher_type" : "REGEX_MATCH",
+      "is_negated" : false,
+      "case_insensitive" : false,
+      "starts_with" : false,
+      "ends_with" : false
+    }, {
+      "field" : "CommandLine",
+      "data" : ".*\\Q-d\\E.*",
+      "is_enabled" : true,
+      "matcher_type" : "REGEX_MATCH",
+      "is_negated" : false,
+      "case_insensitive" : false,
+      "starts_with" : false,
+      "ends_with" : false
+    } ],
+    "is_enabled" : true,
+    "matcher_type" : "COMPOSITE_AND",
+    "is_negated" : false,
+    "case_insensitive" : false,
+    "starts_with" : false,
+    "ends_with" : false
+  } ],
+  "tags" : [ {
+    "tag_name" : "sigma_id",
+    "tag_value" : "719c22d7-c11a-4f2c-93a6-2cfdd5412f68"
+  }, {
+    "tag_name" : "sigma_tags",
+    "tag_value" : "[attack.defense_evasion, attack.t1027]"
+  }, {
+    "tag_name" : "sigma_fp",
+    "tag_value" : "[Legitimate activities]"
+  } ],
+  "rule_protection" : {
+    "max_per_hour" : 30,
+    "max_per_day" : 100
+  }
+}
