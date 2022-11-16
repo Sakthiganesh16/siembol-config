@@ -1,0 +1,48 @@
+{
+  "rule_name" : "imported_from_Gatekeeper_Bypass_via_Xattr_f5141b6d-9f42-41c6-a7bf-2a780678b29b",
+  "rule_author" : "siembol",
+  "rule_version": 1,
+  "rule_description" : "Detects macOS Gatekeeper bypass via xattr utility",
+  "source_type" : "macos",
+  "matchers" : [ {
+    "matchers" : [ {
+      "field" : "Image",
+      "data" : ".*\\Q/xattr\\E$",
+      "is_enabled" : true,
+      "matcher_type" : "REGEX_MATCH",
+      "is_negated" : false,
+      "case_insensitive" : false,
+      "starts_with" : false,
+      "ends_with" : false
+    }, {
+      "field" : "CommandLine",
+      "data" : "(?=.*\\Q-r\\E.*)(?=.*\\Qcom.apple.quarantine\\E.*)",
+      "is_enabled" : true,
+      "matcher_type" : "REGEX_MATCH",
+      "is_negated" : false,
+      "case_insensitive" : false,
+      "starts_with" : false,
+      "ends_with" : false
+    } ],
+    "is_enabled" : true,
+    "matcher_type" : "COMPOSITE_AND",
+    "is_negated" : false,
+    "case_insensitive" : false,
+    "starts_with" : false,
+    "ends_with" : false
+  } ],
+  "tags" : [ {
+    "tag_name" : "sigma_id",
+    "tag_value" : "f5141b6d-9f42-41c6-a7bf-2a780678b29b"
+  }, {
+    "tag_name" : "sigma_tags",
+    "tag_value" : "[attack.defense_evasion, attack.t1553.001]"
+  }, {
+    "tag_name" : "sigma_fp",
+    "tag_value" : "[Legitimate activities]"
+  } ],
+  "rule_protection" : {
+    "max_per_hour" : 30,
+    "max_per_day" : 100
+  }
+}
