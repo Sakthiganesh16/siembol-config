@@ -1,0 +1,109 @@
+{
+  "rule_name" : "imported_from_File_and_Directory_Discovery_089dbdf6-b960-4bcc-90e3-ffc3480c20f6",
+  "rule_author" : "siembol",
+  "rule_version": 1,
+  "rule_description" : "Detects usage of system utilities to discover files and directories",
+  "source_type" : "macos",
+  "matchers" : [ {
+    "matchers" : [ {
+      "field" : "Image",
+      "data" : "\\Q/usr/bin/find\\E",
+      "is_enabled" : true,
+      "matcher_type" : "REGEX_MATCH",
+      "is_negated" : false,
+      "case_insensitive" : false,
+      "starts_with" : false,
+      "ends_with" : false
+    }, {
+      "field" : "Image",
+      "data" : "\\Q/tree\\E",
+      "is_enabled" : true,
+      "matcher_type" : "REGEX_MATCH",
+      "is_negated" : false,
+      "case_insensitive" : false,
+      "starts_with" : false,
+      "ends_with" : false
+    }, {
+      "field" : "Image",
+      "data" : "\\Q/usr/bin/mdfind\\E",
+      "is_enabled" : true,
+      "matcher_type" : "REGEX_MATCH",
+      "is_negated" : false,
+      "case_insensitive" : false,
+      "starts_with" : false,
+      "ends_with" : false
+    }, {
+      "matchers" : [ {
+        "field" : "Image",
+        "data" : "\\Q/usr/bin/file\\E",
+        "is_enabled" : true,
+        "matcher_type" : "REGEX_MATCH",
+        "is_negated" : false,
+        "case_insensitive" : false,
+        "starts_with" : false,
+        "ends_with" : false
+      }, {
+        "field" : "CommandLine",
+        "data" : "(.){200,}",
+        "is_enabled" : true,
+        "matcher_type" : "REGEX_MATCH",
+        "is_negated" : false,
+        "case_insensitive" : false,
+        "starts_with" : false,
+        "ends_with" : false
+      } ],
+      "is_enabled" : true,
+      "matcher_type" : "COMPOSITE_AND",
+      "is_negated" : false,
+      "case_insensitive" : false,
+      "starts_with" : false,
+      "ends_with" : false
+    }, {
+      "matchers" : [ {
+        "field" : "Image",
+        "data" : "\\Q/bin/ls\\E",
+        "is_enabled" : true,
+        "matcher_type" : "REGEX_MATCH",
+        "is_negated" : false,
+        "case_insensitive" : false,
+        "starts_with" : false,
+        "ends_with" : false
+      }, {
+        "field" : "CommandLine",
+        "data" : ".*\\Q-R\\E.*",
+        "is_enabled" : true,
+        "matcher_type" : "REGEX_MATCH",
+        "is_negated" : false,
+        "case_insensitive" : false,
+        "starts_with" : false,
+        "ends_with" : false
+      } ],
+      "is_enabled" : true,
+      "matcher_type" : "COMPOSITE_AND",
+      "is_negated" : false,
+      "case_insensitive" : false,
+      "starts_with" : false,
+      "ends_with" : false
+    } ],
+    "is_enabled" : true,
+    "matcher_type" : "COMPOSITE_OR",
+    "is_negated" : false,
+    "case_insensitive" : false,
+    "starts_with" : false,
+    "ends_with" : false
+  } ],
+  "tags" : [ {
+    "tag_name" : "sigma_id",
+    "tag_value" : "089dbdf6-b960-4bcc-90e3-ffc3480c20f6"
+  }, {
+    "tag_name" : "sigma_tags",
+    "tag_value" : "[attack.discovery, attack.t1083]"
+  }, {
+    "tag_name" : "sigma_fp",
+    "tag_value" : "[Legitimate activities]"
+  } ],
+  "rule_protection" : {
+    "max_per_hour" : 30,
+    "max_per_day" : 100
+  }
+}
