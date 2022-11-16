@@ -1,0 +1,142 @@
+{
+  "rule_name" : "imported_from_Hidden_User_Creation_b22a5b36-2431-493a-8be1-0bae56c28ef3",
+  "rule_author" : "siembol",
+  "rule_version": 1,
+  "rule_description" : "Detects creation of a hidden user account on macOS (UserID < 500) or with IsHidden option",
+  "source_type" : "macos",
+  "matchers" : [ {
+    "matchers" : [ {
+      "matchers" : [ {
+        "matchers" : [ {
+          "field" : "Image",
+          "data" : ".*\\Q/dscl\\E$",
+          "is_enabled" : true,
+          "matcher_type" : "REGEX_MATCH",
+          "is_negated" : false,
+          "case_insensitive" : false,
+          "starts_with" : false,
+          "ends_with" : false
+        }, {
+          "field" : "CommandLine",
+          "data" : ".*\\Qcreate\\E.*",
+          "is_enabled" : true,
+          "matcher_type" : "REGEX_MATCH",
+          "is_negated" : false,
+          "case_insensitive" : false,
+          "starts_with" : false,
+          "ends_with" : false
+        } ],
+        "is_enabled" : true,
+        "matcher_type" : "COMPOSITE_AND",
+        "is_negated" : false,
+        "case_insensitive" : false,
+        "starts_with" : false,
+        "ends_with" : false
+      }, {
+        "matchers" : [ {
+          "field" : "CommandLine",
+          "data" : ".*\\QUniqueID\\E.*",
+          "is_enabled" : true,
+          "matcher_type" : "REGEX_MATCH",
+          "is_negated" : false,
+          "case_insensitive" : false,
+          "starts_with" : false,
+          "ends_with" : false
+        }, {
+          "field" : "CommandLine",
+          "data" : "([0-9]|[1-9][0-9]|[1-4][0-9]{2})",
+          "is_enabled" : true,
+          "matcher_type" : "REGEX_MATCH",
+          "is_negated" : false,
+          "case_insensitive" : false,
+          "starts_with" : false,
+          "ends_with" : false
+        } ],
+        "is_enabled" : true,
+        "matcher_type" : "COMPOSITE_AND",
+        "is_negated" : false,
+        "case_insensitive" : false,
+        "starts_with" : false,
+        "ends_with" : false
+      } ],
+      "is_enabled" : true,
+      "matcher_type" : "COMPOSITE_AND",
+      "is_negated" : false,
+      "case_insensitive" : false,
+      "starts_with" : false,
+      "ends_with" : false
+    }, {
+      "matchers" : [ {
+        "matchers" : [ {
+          "field" : "Image",
+          "data" : ".*\\Q/dscl\\E$",
+          "is_enabled" : true,
+          "matcher_type" : "REGEX_MATCH",
+          "is_negated" : false,
+          "case_insensitive" : false,
+          "starts_with" : false,
+          "ends_with" : false
+        }, {
+          "field" : "CommandLine",
+          "data" : ".*\\Qcreate\\E.*",
+          "is_enabled" : true,
+          "matcher_type" : "REGEX_MATCH",
+          "is_negated" : false,
+          "case_insensitive" : false,
+          "starts_with" : false,
+          "ends_with" : false
+        } ],
+        "is_enabled" : true,
+        "matcher_type" : "COMPOSITE_AND",
+        "is_negated" : false,
+        "case_insensitive" : false,
+        "starts_with" : false,
+        "ends_with" : false
+      }, {
+        "field" : "CommandLine",
+        "data" : ".*\\QIsHidden\\E.*",
+        "is_enabled" : true,
+        "matcher_type" : "REGEX_MATCH",
+        "is_negated" : false,
+        "case_insensitive" : false,
+        "starts_with" : false,
+        "ends_with" : false
+      }, {
+        "field" : "CommandLine",
+        "data" : ".*\\Qtrue\\E.*|.*\\Qyes\\E.*|.*\\Q1\\E.*",
+        "is_enabled" : true,
+        "matcher_type" : "REGEX_MATCH",
+        "is_negated" : false,
+        "case_insensitive" : false,
+        "starts_with" : false,
+        "ends_with" : false
+      } ],
+      "is_enabled" : true,
+      "matcher_type" : "COMPOSITE_AND",
+      "is_negated" : false,
+      "case_insensitive" : false,
+      "starts_with" : false,
+      "ends_with" : false
+    } ],
+    "is_enabled" : true,
+    "matcher_type" : "COMPOSITE_OR",
+    "is_negated" : false,
+    "case_insensitive" : false,
+    "starts_with" : false,
+    "ends_with" : false
+  } ],
+  "tags" : [ {
+    "tag_name" : "sigma_id",
+    "tag_value" : "b22a5b36-2431-493a-8be1-0bae56c28ef3"
+  }, {
+    "tag_name" : "sigma_tags",
+    "tag_value" : "[attack.defense_evasion, attack.t1564.002]"
+  }, {
+    "tag_name" : "sigma_fp",
+    "tag_value" : "[Legitimate administration activities]"
+  } ],
+  "rule_protection" : {
+    "max_per_hour" : 30,
+    "max_per_day" : 100
+  }
+}
