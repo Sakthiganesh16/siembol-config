@@ -1,0 +1,31 @@
+{
+  "rule_name" : "imported_from_Group_Modification_Logging_9cf01b6c-e723-4841-a868-6d7f8245ca6e",
+  "rule_author" : "siembol",
+  "rule_version": 1,
+  "rule_description" : "Configure systems to issue a log entry and alert when an account is added to or removed from any group assigned administrative privileges.\nSigma detects\nEvent ID 4728 indicates a ‘Member is added to a Security Group’.\nEvent ID 4729 indicates a ‘Member is removed from a Security enabled-group’ .\nEvent ID 4730 indicates a ‘Security Group is deleted’.\nThe case is not applicable for Unix OS.\nSupported OS - Windows 2008 R2 and 7, Windows 2012 R2 and 8.1, Windows 2016 and 10 Windows Server 2019, Windows Server 2000, Windows 2003 and XP.\n",
+  "source_type" : "macos",
+  "matchers" : [ {
+    "field" : "EventID",
+    "data" : "\\Q4728\\E|\\Q4729\\E|\\Q4730\\E|\\Q633\\E|\\Q632\\E|\\Q634\\E",
+    "is_enabled" : true,
+    "matcher_type" : "REGEX_MATCH",
+    "is_negated" : false,
+    "case_insensitive" : false,
+    "starts_with" : false,
+    "ends_with" : false
+  } ],
+  "tags" : [ {
+    "tag_name" : "sigma_id",
+    "tag_value" : "9cf01b6c-e723-4841-a868-6d7f8245ca6e"
+  }, {
+    "tag_name" : "sigma_tags",
+    "tag_value" : "unknown"
+  }, {
+    "tag_name" : "sigma_fp",
+    "tag_value" : "[Unknown]"
+  } ],
+  "rule_protection" : {
+    "max_per_hour" : 30,
+    "max_per_day" : 100
+  }
+}
