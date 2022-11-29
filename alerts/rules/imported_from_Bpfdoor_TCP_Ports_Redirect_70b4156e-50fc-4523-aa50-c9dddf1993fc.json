@@ -1,0 +1,69 @@
+{
+  "rule_name": "imported_from_Bpfdoor_TCP_Ports_Redirect_70b4156e-50fc-4523-aa50-c9dddf1993fc",
+  "rule_author": "siembol",
+  "rule_version": 1,
+  "rule_description": "All TCP traffic on particular port from attacker is routed to different port. ex. '/sbin/iptables -t nat -D PREROUTING -p tcp -s 192.168.1.1 --dport 22 -j REDIRECT --to-ports 42392'\nThe traffic looks like encrypted SSH communications going to TCP port 22, but in reality is being directed to the shell port once it hits the iptables rule for the attacker host only.\n",
+  "source_type": "audio_linux",
+  "matchers": [
+    {
+      "is_enabled": true,
+      "matcher_type": "COMPOSITE_AND",
+      "is_negated": false,
+      "matchers": [
+        {
+          "is_enabled": true,
+          "matcher_type": "REGEX_MATCH",
+          "is_negated": false,
+          "field": "type",
+          "data": "\\QEXECVE\\E"
+        },
+        {
+          "is_enabled": true,
+          "matcher_type": "REGEX_MATCH",
+          "is_negated": false,
+          "field": "a0",
+          "data": ".*\\Qiptables\\E$"
+        },
+        {
+          "is_enabled": true,
+          "matcher_type": "REGEX_MATCH",
+          "is_negated": false,
+          "field": "a1",
+          "data": "\\Q-t\\E"
+        },
+        {
+          "is_enabled": true,
+          "matcher_type": "REGEX_MATCH",
+          "is_negated": false,
+          "field": "a2",
+          "data": "\\Qnat\\E"
+        }
+      ]
+    },
+    {
+      "is_enabled": true,
+      "matcher_type": "REGEX_MATCH",
+      "is_negated": false,
+      "field": "original_string",
+      "data": "\\Q--to-ports 42\\E|\\Q--to-ports 43\\E"
+    }
+  ],
+  "tags": [
+    {
+      "tag_name": "sigma_id",
+      "tag_value": "70b4156e-50fc-4523-aa50-c9dddf1993fc"
+    },
+    {
+      "tag_name": "sigma_tags",
+      "tag_value": "[attack.defense_evasion, attack.t1562.004]"
+    },
+    {
+      "tag_name": "sigma_fp",
+      "tag_value": "[Legitimate ports redirect]"
+    }
+  ],
+  "rule_protection": {
+    "max_per_hour": 30,
+    "max_per_day": 100
+  }
+}
