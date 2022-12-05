@@ -1,0 +1,19 @@
+{
+  "test_case_name": "test_2mbsdofUA",
+  "test_specification": {
+    "encoding": "utf8_string",
+    "log": "OISUEGHORUQRAGHDS`12341328746"
+  },
+  "assertions": [
+    {
+      "assertion_type": "path_and_value_matches",
+      "json_path": "HOSTNAME",
+      "expected_pattern": "advjavf",
+      "negated_pattern": false,
+      "active": true
+    }
+  ],
+  "author": "siembol",
+  "version": 1,
+  "config_name": "aws_cloudtrail"
+}
