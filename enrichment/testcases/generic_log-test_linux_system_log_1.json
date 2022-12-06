@@ -1,0 +1,27 @@
+{
+  "test_case_name": "test_linux_system_log_1",
+  "description": "generic log from linux string enriched with a specific OS tag",
+  "test_specification": {
+    "event": {
+      "original_string": "2022-11-30T18:04:49+05:30 hemanth-con1146 dbus-daemon[2865]: [session uid=618250315 pid=2865] Successfully activated service 'org.gnome.ArchiveManager1'",
+      "source_type": "linux_system",
+      "timestamp": 1670327611529
+    },
+    "testing_table_name": "linux_generic_log.json",
+    "testing_table_mapping": {
+      "linux_system": {}
+    }
+  },
+  "assertions": [
+    {
+      "assertion_type": "path_and_value_matches",
+      "json_path": "source_type",
+      "expected_pattern": "linux_system",
+      "negated_pattern": false,
+      "active": true
+    }
+  ],
+  "author": "siembol",
+  "version": 1,
+  "config_name": "generic_log"
+}
