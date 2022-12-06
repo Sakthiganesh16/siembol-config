@@ -1,7 +1,7 @@
 {
   "rule_name": "syslog_testrule",
   "rule_author": "siembol",
-  "rule_version": 2,
+  "rule_version": 3,
   "rule_description": "Rule for checking the test_syslog config",
   "source_type": "test_syslog",
   "matchers": [
@@ -16,5 +16,9 @@
       "ends_with": false,
       "data": "hemanth"
     }
-  ]
+  ],
+  "rule_protection": {
+    "max_per_hour": 30,
+    "max_per_day": 100
+  }
 }
