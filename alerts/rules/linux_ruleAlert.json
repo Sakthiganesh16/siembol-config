@@ -1,7 +1,7 @@
 {
   "rule_name": "linux_ruleAlert",
   "rule_author": "siembol",
-  "rule_version": 1,
+  "rule_version": 2,
   "rule_description": "This rule is for checking the linux_system config",
   "source_type": "linux_system",
   "matchers": [
@@ -14,12 +14,6 @@
       "starts_with": false,
       "ends_with": false,
       "data": "linux"
-    }
-  ],
-  "tags": [
-    {
-      "tag_name": "AlertChecked",
-      "tag_value": "yes"
     }
   ],
   "rule_protection": {
