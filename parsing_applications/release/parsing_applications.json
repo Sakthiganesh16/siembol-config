@@ -1,5 +1,5 @@
 {
-  "parsing_applications_version": 7,
+  "parsing_applications_version": 8,
   "parsing_applications": [
     {
       "parsing_app_name": "app_router",
@@ -55,13 +55,13 @@
     },
     {
       "parsing_app_name": "test_syslog",
-      "parsing_app_version": 2,
+      "parsing_app_version": 3,
       "parsing_app_author": "siembol",
       "parsing_app_description": "Parsing Application for syslog test parser config",
       "parsing_app_settings": {
         "parsing_app_type": "single_parser",
         "input_topics": [
-          "test_syslog"
+          "test.syslog"
         ],
         "error_topic": "siembol.indexing",
         "num_workers": 1,
@@ -70,8 +70,7 @@
         "output_parallelism": 1,
         "parse_metadata": false,
         "max_num_fields": 300,
-        "max_field_size": 40000,
-        "original_string_topic": "test_syslog"
+        "max_field_size": 40000
       },
       "parsing_settings": {
         "single_parser": {
