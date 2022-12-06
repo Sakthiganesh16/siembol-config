@@ -1,0 +1,19 @@
+{
+  "test_case_name": "test_config_linux_system_logs_1",
+  "test_specification": {
+    "encoding": "utf8_string",
+    "log": "2022-11-30T18:04:49+05:30 hemanth-con1146 dbus-daemon[2865]: [session uid=618250315 pid=2865] Successfully activated service 'org.gnome.ArchiveManager1'"
+  },
+  "assertions": [
+    {
+      "assertion_type": "path_and_value_matches",
+      "json_path": "os",
+      "expected_pattern": "linux",
+      "negated_pattern": false,
+      "active": true
+    }
+  ],
+  "author": "siembol",
+  "version": 1,
+  "config_name": "linux_system"
+}
