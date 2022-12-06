@@ -1,5 +1,5 @@
 {
-  "parsing_applications_version": 8,
+  "parsing_applications_version": 9,
   "parsing_applications": [
     {
       "parsing_app_name": "app_router",
@@ -55,13 +55,13 @@
     },
     {
       "parsing_app_name": "test_syslog",
-      "parsing_app_version": 3,
+      "parsing_app_version": 4,
       "parsing_app_author": "siembol",
       "parsing_app_description": "Parsing Application for syslog test parser config",
       "parsing_app_settings": {
         "parsing_app_type": "single_parser",
         "input_topics": [
-          "test.syslog"
+          "syslog.spm"
         ],
         "error_topic": "siembol.indexing",
         "num_workers": 1,
