@@ -9,7 +9,7 @@
     "max_per_hour": 30,
     "max_per_day": 100
   },
-  "rules_version": 7,
+  "rules_version": 8,
   "rules": [
     {
       "rule_name": "win_mimikatz",
@@ -273,6 +273,26 @@
         "max_per_hour": 30,
         "max_per_day": 100
       }
+    },
+    {
+      "rule_name": "syslog_testrule",
+      "rule_author": "siembol",
+      "rule_version": 2,
+      "rule_description": "Rule for checking the test_syslog config",
+      "source_type": "test_syslog",
+      "matchers": [
+        {
+          "is_enabled": true,
+          "description": "sudo ",
+          "matcher_type": "CONTAINS",
+          "is_negated": false,
+          "field": "syslog_hostname",
+          "case_insensitive": false,
+          "starts_with": false,
+          "ends_with": false,
+          "data": "hemanth"
+        }
+      ]
     }
   ]
 }
