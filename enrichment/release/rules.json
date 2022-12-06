@@ -1,5 +1,5 @@
 {
-  "rules_version": 6,
+  "rules_version": 7,
   "rules": [
     {
       "rule_name": "ip_hostname",
@@ -82,7 +82,7 @@
     {
       "rule_name": "generic_log",
       "rule_author": "siembol",
-      "rule_version": 3,
+      "rule_version": 4,
       "rule_description": "This is the enricher for the linux system generic logs",
       "source_type": "linux_system",
       "matchers": [
@@ -99,8 +99,8 @@
         "joining_key": "${source_type}",
         "tags": [
           {
-            "tag_name": "\"OS\"",
-            "tag_value": "\"Linux\""
+            "tag_name": "OS",
+            "tag_value": "Linux"
           }
         ]
       }
