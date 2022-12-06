@@ -1,5 +1,5 @@
 {
-  "rules_version": 5,
+  "rules_version": 6,
   "rules": [
     {
       "rule_name": "ip_hostname",
@@ -75,6 +75,32 @@
           {
             "table_field_name": "syslog_hostname",
             "event_field_name": "enriched_syslog_hostname"
+          }
+        ]
+      }
+    },
+    {
+      "rule_name": "generic_log",
+      "rule_author": "siembol",
+      "rule_version": 3,
+      "rule_description": "This is the enricher for the linux system generic logs",
+      "source_type": "linux_system",
+      "matchers": [
+        {
+          "is_enabled": true,
+          "matcher_type": "REGEX_MATCH",
+          "is_negated": false,
+          "field": "source_type",
+          "data": "linux_system"
+        }
+      ],
+      "table_mapping": {
+        "table_name": "linux_generic_log.json",
+        "joining_key": "${source_type}",
+        "tags": [
+          {
+            "tag_name": "\"OS\"",
+            "tag_value": "\"Linux\""
           }
         ]
       }
