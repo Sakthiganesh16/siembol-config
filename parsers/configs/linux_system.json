@@ -1,0 +1,9 @@
+{
+  "parser_name": "linux_system",
+  "parser_version": 1,
+  "parser_author": "siembol",
+  "parser_description": "Parser to parse the linux system logs",
+  "parser_attributes": {
+    "parser_type": "generic"
+  }
+}
