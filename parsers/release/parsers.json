@@ -1,5 +1,5 @@
 {
-  "parsers_version": 9,
+  "parsers_version": 10,
   "parsers_configurations": [
     {
       "parser_name": "aws_cloudtrail",
@@ -140,12 +140,38 @@
     },
     {
       "parser_name": "linux_system",
-      "parser_version": 1,
+      "parser_version": 2,
       "parser_author": "siembol",
       "parser_description": "Parser to parse the linux system logs",
       "parser_attributes": {
         "parser_type": "generic"
-      }
+      },
+      "parser_extractors": [
+        {
+          "is_enabled": true,
+          "name": "\"json\"",
+          "field": "\"original_string\"",
+          "post_processing_functions": [
+            "format_timestamp"
+          ],
+          "extractor_type": "json_extractor",
+          "attributes": {
+            "should_overwrite_fields": true,
+            "should_remove_field": false,
+            "remove_quotes": true,
+            "skip_empty_values": false,
+            "thrown_exception_on_error": false,
+            "nested_separator": "_",
+            "time_formats": [
+              {
+                "time_format": "yyyy-MM-dd'T'HH:mm:ss'Z'",
+                "timezone": "UTC"
+              }
+            ],
+            "timestamp_field": "original_string"
+          }
+        }
+      ]
     }
   ]
 }
