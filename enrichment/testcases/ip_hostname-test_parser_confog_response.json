@@ -14,7 +14,7 @@
       "timestamp": 1669959863301,
       "IpAddress": "1.2.3.4"
     },
-    "testing_table_name": "hostname.json",
+    "testing_table_name": "hostname",
     "testing_table_mapping": {
       "1.2.3.4": {
         "hostname": "test-name"
@@ -31,7 +31,7 @@
     }
   ],
   "author": "siembol",
-  "version": 2,
+  "version": 3,
   "test_case_name": "test_parser_confog_response",
   "config_name": "ip_hostname"
 }
